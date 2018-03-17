@@ -20,9 +20,8 @@ using std::endl;
 class Node
 {
 public:
-public:
 	//Needs mod
-	Node(Data &newData); //Constructor for Node with Data
+	Node(); //Constructor for Node with Data
 	Node(Node &newNode); //Constructor  of New Node copying data from a Node
 	~Node();
 
@@ -37,4 +36,10 @@ private:
 	Data * mpData;
 	Node *mpNext;
 	//int serviceTime = 0;
+
+	/*
+	Student info goes here
+	
+	*/
+
 };
