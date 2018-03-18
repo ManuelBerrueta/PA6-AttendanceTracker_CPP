@@ -47,6 +47,5 @@ public:
 private:
 	Node * mpHead;								// pointer to the start or head of the singly linked list
 	fstream fileHandle;
-	void destroyList(Node * pMem);		// we will use recursion to solve this problem!
-
+	void destroyList(Node * pMem);				// we will use recursion to solve this problem!
 };
