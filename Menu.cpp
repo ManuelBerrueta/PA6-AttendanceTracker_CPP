@@ -41,11 +41,11 @@ Menu::Menu()
 
 
 	LinkedList List();
-	Data data;
+	Node *newData;
 	int load_status = 0;
 
 	int option = 0;
-	while (option < 1 || option > 11)
+	while (option < 1 || option > 7)
 	{
 		cout << ("-=-==-===-==== Manny's Attendance Tracker ====-===-==-=-") << endl;
 		cout << ("* MAIN MENU *\n") << endl;
@@ -156,4 +156,8 @@ Menu::Menu()
 		}
 	}
 
+}
+
+void Menu::runApp()
+{
 }

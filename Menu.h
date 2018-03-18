@@ -3,18 +3,21 @@
 #include <iostream>
 #include <fstream>
 
+using std::ifstream;
+using std::ofstream;
+using std::fstream;
+using std::string;
+using std::ios;
 using std::cin;
 using std::cout;
 using std::endl;
-using std::ifstream;
-using std::ofstream;
-using std::ios;
 
 class Menu
 {
 public:
 	Menu();
 
+	void runApp();
 
 
 private:
