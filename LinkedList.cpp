@@ -1,5 +1,6 @@
 #include "LinkedList.h"
 
+
 LinkedList::LinkedList()
 {
 	mpHead = nullptr;
@@ -10,12 +11,12 @@ LinkedList::~LinkedList()
 	destroyList(mpHead);
 }
 
-Node * LinkedList::getHeadPtr() const
+Node * LinkedList::getHeadPtr()
 {
 	return mpHead;
 }
 
-void LinkedList::setHeadPtr(Node * const pNewHead)
+void LinkedList::setHeadPtr(Node * pNewHead)
 {
 	mpHead = pNewHead;
 }
@@ -43,6 +44,24 @@ bool LinkedList::isEmpty()
 	return (mpHead == nullptr);
 }
 
+void LinkedList::loadInitialList()
+{
+	fileHandle.open("classList.csv", ios::in);
+	Node *tempData = nullptr;
+	string tempStr = "";
+	getline(fileHandle, tempStr);
+	
+	while ( fileHandle.good() )
+	{
+		getline(fileHandle, tempStr, ',');
+		tempData->recordNum = stoi(tempStr);
+
+	}
+
+
+	fileHandle.close();
+}
+
 void LinkedList::isAbsent()
 {
 
@@ -51,6 +70,7 @@ void LinkedList::isAbsent()
 Node * LinkedList::makeNode(Node newData)
 {
 	Node tempNode(newData);
+	return &tempNode;
 }
 
 void LinkedList::destroyList(Node * pMem)

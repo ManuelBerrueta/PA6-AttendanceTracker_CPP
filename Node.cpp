@@ -28,7 +28,6 @@ Node::Node(Node & newNode)
 	Stack dateAbsent;					//Stack using an array of strings
 
 	mpNext = nullptr;
-
 }
 
 Node::~Node()

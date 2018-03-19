@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <fstream>
+#include "LinkedList.h"
 
 using std::ifstream;
 using std::ofstream;

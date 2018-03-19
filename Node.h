@@ -1,11 +1,10 @@
 #pragma once
+#define _CRT_SECURE_NO_WARNINGS
 
 #include <iostream>
 #include <fstream>
 #include <string>
 
-#include "Node.h"
-#include "LinkedList.h"
 #include "Stack.h"
 
 using std::ifstream;
@@ -20,16 +19,13 @@ using std::endl;
 class Node
 {
 public:
-	//Needs mod
 	Node();					//Constructor
 	Node(Node &newNode);	//Constructor  of New Node copying data from a Node
 	~Node();
 
 	Node * getNextPtr();	//getter for the next pointer
-	void setNextPtr(Node * newNextPtr); //setter for the mpNext (Next Pointert
+	void setNextPtr(Node * newNextPtr); //setter for the mpNext (Next Pointer)
 
-private:
-	Node *mpNext;
 	/* Student info goes here */
 	int recordNum;			//(max 3 digits)
 	int id_Num;				//(max 9 digits)
@@ -40,4 +36,15 @@ private:
 	string level;			// (freshman, sophomore, junior, senior, graduate)
 	int absences;			//Numbers of absences
 	Stack dateAbsent;		//Stack using an array of strings
+
+private:
+	Node *mpNext;
 };
+
+//fstream & operator >> (fstream &lhs, Node &rhs)
+//{
+//	lhs >> rhs.recordNum >> rhs.id_Num >> nrhs.getDate() << endl << endl;
+//	//cout << "Plan Name: " << dPlanDisplay.getName << "Goal: " << dPlanDisplay.getName << "Date: " << dPlanDisplay.getDate << endl;
+//
+//	return lhs;
+//}

@@ -67,7 +67,7 @@ Menu::Menu()
 			//Load Function
 			if (load_status == 0)
 			{
-				load(&pList);
+				//load(&pList);
 				load_status = 1;
 			}
 			else
@@ -81,14 +81,14 @@ Menu::Menu()
 
 		case 2:
 			//Store Function
-			store(pList);
+			//store(pList);
 			system("cls");
 			option = 0;
 			break;
 
 		case 3:
 			//Display Function
-			display(pList);
+			//display(pList);
 			system("cls");
 			option = 0;
 
@@ -96,58 +96,30 @@ Menu::Menu()
 
 		case 4:
 			//Insert Function
-			insert(&pList);
+			//insert(&pList);
 			system("cls");
 			option = 0;
 			break;
 
 		case 5:
 			//Delete Function
-			del_rec(&pList);
+			//del_rec(&pList);
 			system("cls");
 			option = 0;
 			break;
 
 		case 6:
 			//Edit Function
-			edit(pList);
+			//edit(pList);
 			system("cls");
 			option = 0;
 			break;
 
 		case 7:
 			//Sort Function
-			sort(pList);
+			//sort(pList);
 			system("cls");
 			option = 0;
-			break;
-
-		case 8:
-			//Rate Function
-			rate(pList);
-			system("cls");
-			option = 0;
-			break;
-
-		case 9:
-			//Play Function
-			play(pList);
-			system("cls");
-			option = 0;
-			break;
-
-		case 10:
-			//Shuffle Function
-			shuffle(pList);
-			system("cls");
-			option = 0;
-			break;
-
-		case 11:
-			store(pList);
-			exit(0);
-			//Exit Function
-			return 0;
 			break;
 		default:
 			printf("Please select from options 1-13\n\n");
