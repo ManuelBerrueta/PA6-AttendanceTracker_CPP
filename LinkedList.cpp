@@ -47,15 +47,26 @@ bool LinkedList::isEmpty()
 void LinkedList::loadInitialList()
 {
 	fileHandle.open("classList.csv", ios::in);
-	Node *tempData = nullptr;
+	Node tempData;
 	string tempStr = "";
 	getline(fileHandle, tempStr);
 	
 	while ( fileHandle.good() )
 	{
 		getline(fileHandle, tempStr, ',');
-		tempData->recordNum = stoi(tempStr);
+		tempData.recordNum = stoi(tempStr);
+		getline(fileHandle, tempStr, ',');
+		tempData.id_Num = stoi(tempStr);
+		getline(fileHandle, tempStr, '"');
+		getline(fileHandle, tempData.name, '"');
+		getline(fileHandle, tempStr, ',');
+		getline(fileHandle, tempData.email, ',');
+		getline(fileHandle, tempData.units, ',');
+		getline(fileHandle, tempData.program, ',');
+		getline(fileHandle, tempData.level);
 
+		//At the end of this loop
+		this->insertAtFront(tempData);
 	}
 
 
