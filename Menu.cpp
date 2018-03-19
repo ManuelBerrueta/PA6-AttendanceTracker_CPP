@@ -36,15 +36,16 @@ Option 7: Exit the program.
 
 Menu::Menu()
 {
-	mInput.open("classList.csv", ios::in);
-	//need to finish FIle reading functions First!!!<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+}
 
+int Menu::myMenu()
+{
+	LinkedList MasterList;
 
-	LinkedList List();
-	Node *newData;
 	int load_status = 0;
-
 	int option = 0;
+	int reportOpt = 0;
+
 	while (option < 1 || option > 7)
 	{
 		cout << ("-=-==-===-==== Manny's Attendance Tracker ====-===-==-=-") << endl;
@@ -67,7 +68,7 @@ Menu::Menu()
 			//Load Function
 			if (load_status == 0)
 			{
-				//load(&pList);
+				MasterList.loadInitialList();
 				load_status = 1;
 			}
 			else
@@ -80,15 +81,15 @@ Menu::Menu()
 			break;
 
 		case 2:
-			//Store Function
-			//store(pList);
+			//
+			//MasterList.loadMasterList();
 			system("cls");
 			option = 0;
 			break;
 
 		case 3:
-			//Display Function
-			//display(pList);
+			//Store master list
+			MasterList.storeList();
 			system("cls");
 			option = 0;
 
@@ -96,40 +97,55 @@ Menu::Menu()
 
 		case 4:
 			//Insert Function
-			//insert(&pList);
+			MasterList.markAbsence();
 			system("cls");
 			option = 0;
 			break;
 
 		case 5:
-			//Delete Function
-			//del_rec(&pList);
+			//Edit Absences Function
+			
 			system("cls");
 			option = 0;
 			break;
 
 		case 6:
-			//Edit Function
-			//edit(pList);
+			//Generate Reports
+			cout << "What kind of report would you like to generate?" << endl;
+			cout << "Enter 1 for report of all students, absences and most current absence" << endl; //use peek to print most current absence
+			cout << "Enter 2 for report with students passed the specified threshold" << endl;
+			cin >> reportOpt;
+			if (reportOpt == 1)
+			{
+				//print report1
+			}
+			if (reportOpt == 2)
+			{
+				//print report2
+			}
 			system("cls");
 			option = 0;
 			break;
-
 		case 7:
-			//Sort Function
-			//sort(pList);
+			//Exit
 			system("cls");
-			option = 0;
 			break;
 		default:
-			printf("Please select from options 1-13\n\n");
+			printf("Please select from options 1-7\n\n");
 			system("pause");
 			system("cls");
 		}
 	}
 
+	
+	return option;
 }
 
 void Menu::runApp()
 {
+	//LinkedList MasterList;
+
+	//MasterList.loadInitialList();
+	Menu myApp;
+	myApp.myMenu();
 }

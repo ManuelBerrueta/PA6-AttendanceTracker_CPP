@@ -13,14 +13,13 @@ Requirement 3 (Generate reports): The application must generate reports based on
 Requirement 4 (Menu): The application must support a user interface to the attendance tracker.
 
 */
-#include "LinkedList.h"
+#include "Menu.h"
 
 int main(void)
 {
-	LinkedList test;
-
-	test.loadInitialList();
-
+	Menu App;
+		
+	App.runApp();
 
 	return 0;
 }

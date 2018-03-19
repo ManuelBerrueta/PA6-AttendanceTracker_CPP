@@ -29,9 +29,11 @@ string Stack::pop()
 	return absenceTracker[mpStackHead];
 }
 
-void Stack::peek()
+string Stack::peek()
 {
-	cout << absenceTracker[mpStackHead];
+	string mostCurrentAbsence = "";
+	mostCurrentAbsence = absenceTracker[mpStackHead];
+	return mostCurrentAbsence;
 }
 
 bool Stack::isEmpty()

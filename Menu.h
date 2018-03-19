@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <fstream>
+#include <string>
+
 #include "LinkedList.h"
 
 using std::ifstream;
@@ -18,6 +20,7 @@ class Menu
 public:
 	Menu();
 
+	int myMenu();
 	void runApp();
 
 

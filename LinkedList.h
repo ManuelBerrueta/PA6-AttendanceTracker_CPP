@@ -34,7 +34,15 @@ public:
 
 	void loadInitialList();
 
-	//void printList();							// visits each node, print the node's data - we could also overload the stream insertion << operator to print the list
+	void loadMasterList();
+
+	void markAbsence();
+
+	void storeList();
+
+	void genAbsenceReport();
+
+	void genThresholdReport();
 
 	void isAbsent();
 
@@ -44,3 +52,7 @@ private:
 	fstream fileHandle;
 	void destroyList(Node * pMem);				// we will use recursion to solve this problem!
 };
+
+//Overloading stream insertion operator ( << ) to print to file object contents
+fstream & operator << (fstream &lhs, Node &rhs);
+

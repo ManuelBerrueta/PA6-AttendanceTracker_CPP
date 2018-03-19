@@ -20,7 +20,7 @@ public:
 	Stack();
 	void push();
 	string pop();
-	void peek();
+	string peek();
 	bool isEmpty();
 
 private:
