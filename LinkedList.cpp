@@ -23,7 +23,7 @@ void LinkedList::setHeadPtr(Node * pNewHead)
 
 
 // This function creates a new ListNode on the heap, and uses the ListNode constructor to initialize the node!
-bool LinkedList::insertAtFront(Node newData)     // inserts newData at the beginning or front of the list
+bool LinkedList::insertAtFront(Node  newData)     // inserts newData at the beginning or front of the list
 {
 	Node *pMem = makeNode(newData);
 	bool success = false;                   // C++ has built in bool types - false, true
@@ -51,9 +51,9 @@ void LinkedList::loadInitialList()
 	string tempStr = "";
 	getline(fileHandle, tempStr);
 	
-	while ( getline(fileHandle, tempStr) )
+	while ( getline(fileHandle, tempStr, ',') )
 	{
-		getline(fileHandle, tempStr, ',');
+		//getline(fileHandle, tempStr, ',');
 		tempData.recordNum = stoi(tempStr);
 		getline(fileHandle, tempStr, ',');
 		tempData.id_Num = stoi(tempStr);
@@ -129,7 +129,7 @@ void LinkedList::storeList()
 
 	while (pCur != nullptr)
 	{
-		fileHandle << pCur;
+		fileHandle << *pCur;
 		pCur = pCur->getNextPtr();
 	}
 	fileHandle.close();
@@ -181,8 +181,8 @@ void LinkedList::isAbsent()
 
 Node * LinkedList::makeNode(Node newData)
 {
-	Node tempNode(newData);
-	return &tempNode;
+	Node * tempNode = new Node(newData); 
+	return   tempNode;
 }
 
 void LinkedList::destroyList(Node * pMem)
@@ -197,7 +197,7 @@ void LinkedList::destroyList(Node * pMem)
 fstream & operator<<(fstream & lhs, Node &rhs)
 {
 	// TODO: insert return statement here
-	lhs << rhs.recordNum << "," << rhs.id_Num << ',' << '"' << rhs.name << '"' << ',' << rhs.email << ',' << rhs.units << ',' << rhs.program << ','
+	lhs << rhs.recordNum << ',' << rhs.id_Num << ',' << '"' << rhs.name << '"' << ',' << rhs.email << ',' << rhs.units << ',' << rhs.program << ','
 		<< rhs.level << ',' << rhs.absences << endl;
 
 	return lhs;

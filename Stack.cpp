@@ -4,7 +4,7 @@
 Stack::Stack()
 {
 	absenceTracker[0] = "0";
-	mpStackHead = 0;
+	mpStackHead = -1;
 }
 
 void Stack::push()
@@ -39,7 +39,7 @@ string Stack::peek()
 bool Stack::isEmpty()
 {
 	bool isitEmpty = true;
-	if (mpStackHead != 0)
+	if (mpStackHead != -1)
 	{
 		isitEmpty = false;
 	}

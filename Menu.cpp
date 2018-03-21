@@ -73,7 +73,7 @@ int Menu::myMenu()
 			}
 			else
 			{
-				printf("List is already loaded!\n");
+				cout << "List is already loaded!\n";
 				system("pause");
 			}
 			system("cls");
@@ -92,7 +92,6 @@ int Menu::myMenu()
 			MasterList.storeList();
 			system("cls");
 			option = 0;
-
 			break;
 
 		case 4:
@@ -131,7 +130,7 @@ int Menu::myMenu()
 			system("cls");
 			break;
 		default:
-			printf("Please select from options 1-7\n\n");
+			cout << "Please select from options 1-7\n\n";
 			system("pause");
 			system("cls");
 		}
