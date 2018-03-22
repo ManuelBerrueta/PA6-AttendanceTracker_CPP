@@ -106,6 +106,21 @@ void LinkedList::markAbsence()
 {
 	Node *pCur = mpHead;
 	int option = 0;
+	string date = "";
+	string tempYear = "";
+	// retrieved from stackoverflow - http://stackoverflow.com/questions/997946/how-to-get-current-time-and-date-in-c
+	time_t t = time(0);   // get time now
+
+	struct tm * now = localtime(&t);
+
+	int year = now->tm_year + 1900;
+	int month = (now->tm_mon + 1);
+	int day = now->tm_mday;
+
+	tempYear = std::to_string(year);
+
+	date = std::to_string(year) + '-' + std::to_string(month) + '-'+ std::to_string(day) + ',';
+
 
 	while (pCur != nullptr)
 	{
@@ -115,7 +130,7 @@ void LinkedList::markAbsence()
 		if (option == 1)
 		{
 			pCur->absences++;
-			pCur->dateAbsent.push();
+			pCur->dateAbsent.push(date);
 		}
 		pCur = pCur->getNextPtr();
 	}
@@ -198,7 +213,9 @@ fstream & operator<<(fstream & lhs, Node &rhs)
 {
 	// TODO: insert return statement here
 	lhs << rhs.recordNum << ',' << rhs.id_Num << ',' << '"' << rhs.name << '"' << ',' << rhs.email << ',' << rhs.units << ',' << rhs.program << ','
-		<< rhs.level << ',' << rhs.absences << endl;
+		<< rhs.level << ',' << rhs.absences << ',';
+	lhs << rhs.dateAbsent << endl;
 
 	return lhs;
 }
+

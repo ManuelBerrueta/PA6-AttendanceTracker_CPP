@@ -18,12 +18,15 @@ class Stack
 {
 public:
 	Stack();
-	void push();
+	void push(string date);
 	string pop();
 	string peek();
 	bool isEmpty();
 
+
 private:
 	string absenceTracker[100];
-	int mpStackHead;
+	int StackTop;
 };
+
+fstream & operator<<(fstream & lhs, Stack &rhs);
