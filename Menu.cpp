@@ -82,7 +82,7 @@ int Menu::myMenu()
 
 		case 2:
 			//
-			//MasterList.loadMasterList();
+			MasterList.loadMasterList();
 			system("cls");
 			option = 0;
 			break;

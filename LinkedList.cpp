@@ -78,6 +78,7 @@ void LinkedList::loadMasterList()
 	fileHandle.open("master.txt", ios::in);
 	Node tempData;
 	string tempStr = "";
+	int dateTemp;
 	getline(fileHandle, tempStr);
 
 	while (getline(fileHandle, tempStr))
@@ -95,6 +96,12 @@ void LinkedList::loadMasterList()
 		getline(fileHandle, tempData.level, ',');
 		getline(fileHandle, tempStr);
 		tempData.absences = stoi(tempStr);
+		
+		while (getline(fileHandle, tempStr, ','))//Problem is in here before or in loop
+		{
+			getline(fileHandle, tempStr, ',');
+			tempData.dateAbsent.push(tempStr);
+		}
 
 		//At the end of this loop
 		this->insertAtFront(tempData);
@@ -141,6 +148,8 @@ void LinkedList::storeList()
 	fileHandle.open("master.txt", ios::out);
 
 	Node *pCur = mpHead;
+
+	fileHandle << ",ID,Name,Email,Units,Program,Level,absences,absence_dates" << endl;
 
 	while (pCur != nullptr)
 	{

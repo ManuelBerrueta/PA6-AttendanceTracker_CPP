@@ -19,7 +19,7 @@ void Stack::push(string date)
 
 string Stack::pop()
 {
-	return absenceTracker[StackTop];
+	return absenceTracker[StackTop--];
 }
 
 string Stack::peek()
@@ -47,7 +47,7 @@ fstream & operator<<(fstream & lhs, Stack &rhs)
 	while (!rhs.isEmpty())
 	{
 		tempDate = rhs.pop();
-		lhs << tempDate << ',';
+		lhs << tempDate /*<< ','*/;
 		tempData.push(tempDate);
 	}
 	while (!tempData.isEmpty()) ///Start here
