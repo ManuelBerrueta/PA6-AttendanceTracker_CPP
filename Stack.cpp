@@ -56,7 +56,7 @@ fstream & operator<<(fstream & lhs, Stack &rhs)
 		lhs << tempDate << ',';
 		tempData.push(tempDate);
 	}
-	while (!tempData.isEmpty()) ///Start here
+	while (!tempData.isEmpty()) //Start here
 	{
 		rhs.push(tempData.pop());
 	}

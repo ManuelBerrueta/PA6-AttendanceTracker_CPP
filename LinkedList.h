@@ -46,6 +46,8 @@ public:
 
 	void isAbsent();
 
+	void editAbsence();
+
 private:
 	Node * mpHead;								// pointer to the start or head of the singly linked list
 	Node * makeNode(Node newData);			// will only call within insert functions

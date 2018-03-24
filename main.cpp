@@ -1,5 +1,6 @@
 /*
 PA6 - Course Attendace Tracker
+By Manuel Berrueta
 
 
 Requirement 1 (Import records): The application must import records pertaining to each student registered for the course from a course list.

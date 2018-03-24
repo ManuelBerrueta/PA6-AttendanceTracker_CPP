@@ -78,7 +78,7 @@ void LinkedList::loadMasterList()
 	fileHandle.open("master.txt", ios::in);
 	Node tempData;
 	string tempStr = "";
-	getline(fileHandle, tempStr);
+	//getline(fileHandle, tempStr);
 	int stackIndex = 0;
 
 	while (getline(fileHandle, tempStr))
@@ -114,7 +114,14 @@ void LinkedList::loadMasterList()
 
 		//At the end of this loop
 		this->insertAtFront(tempData);
-		tempStr = tempData.dateAbsent.pop();
+		
+		stackIndex = 0;
+
+		while (stackIndex < tempData.absences)
+		{
+			tempData.dateAbsent.pop();
+			stackIndex++;
+		}
 	}
 	 fileHandle.close();
 }
@@ -136,7 +143,7 @@ void LinkedList::markAbsence()
 
 	tempYear = std::to_string(year);
 
-	date = std::to_string(year) + '-' + std::to_string(month) + '-'+ std::to_string(day) + ',';
+	date = std::to_string(year) + '-' + std::to_string(month) + '-'+ std::to_string(day); //+ ',' //
 
 
 	while (pCur != nullptr)
@@ -159,7 +166,7 @@ void LinkedList::storeList()
 
 	Node *pCur = mpHead;
 
-	//fileHandle << "master list" << endl;
+	fileHandle << ",master,list," << endl;
 
 	while (pCur != nullptr)
 	{
@@ -176,10 +183,10 @@ void LinkedList::genAbsenceReport()
 
 	fileHandle << ",ID,Name,Email,Units,Program,Level,Absences, Most_Recent_Absence" << endl;
 
-	while (pCur != nullptr);
+	while (pCur != nullptr)
 	{
-		fileHandle << pCur->id_Num << ", " << pCur->name << ", " << pCur->absences << ", " << pCur->absences << ", "
-		<< pCur->dateAbsent.peek();
+		fileHandle << pCur->id_Num << ", " << pCur->name << ", " << pCur->email <<", " << pCur->units << ", " 
+			<< pCur->program << ", " << pCur->level << ", "<< pCur->absences << ", "	<< pCur->dateAbsent.peek() << endl;
 		pCur = pCur->getNextPtr();
 	}
 	fileHandle.close();
@@ -190,18 +197,27 @@ void LinkedList::genThresholdReport()
 	int threshold = 10;
 	Node *pCur = mpHead;
 	fileHandle.open("aboveAbTresh.txt", ios::out);
+	int absenceCounter = 0;
 
 	cout << "Specify Threshold::> ";
 	cin >> threshold;
 
-	fileHandle << ",ID,Name,Email,Units,Program,Level,Absences, Most_Recent_Absence" << endl;
+	fileHandle << ",ID,Name,Email,Units,Program,Level,Absences Dates" << endl;
 
-	while (pCur != nullptr);
+	while (pCur != nullptr)
 	{
 		if (pCur->absences >= threshold)
 		{
-			fileHandle << pCur->id_Num << ", " << pCur->name << ", " << pCur->absences << ", " << pCur->absences << ", "
-				<< pCur->dateAbsent.peek();
+			fileHandle << pCur->id_Num << ", " << pCur->name << ", " << pCur->email << ", " << pCur->units << ", "
+				<< pCur->program << ", " << pCur->level << ", ";
+			/*Absence Dates code*/;
+			absenceCounter = 0;
+			while (absenceCounter < pCur->absences)
+			{
+				fileHandle << pCur->dateAbsent.pop() << ",";
+				absenceCounter++;
+			}
+			fileHandle << endl;
 		}
 		pCur = pCur->getNextPtr();
 	}
@@ -211,6 +227,93 @@ void LinkedList::genThresholdReport()
 void LinkedList::isAbsent()
 {
 
+}
+
+void LinkedList::editAbsence()
+{
+	int option = 0;
+	int IDnum = 0;
+	Node *pCur = mpHead;
+	int absIndex = 0;
+	int yesOrNo = 0;
+	Stack tempDates;
+	string tempName = "";
+
+	while (option < 1 || option > 2)
+	{
+		cout << "Edit Absence SubMenu" << endl;
+		cout << "Enter 1 to search by ID# or 2 to search by student name ::> " << endl;
+		cin >> option;
+		if (option == 1)
+		{
+			cout << "Enter ID number::> ";
+			cin >> IDnum;
+			while (pCur != nullptr)
+			{
+				if (pCur->id_Num == IDnum)
+				{
+					cout << "Here are the absence date available to edit for " << IDnum << endl;
+					while (absIndex < pCur->absences)
+					{
+						cout << "Date: " << pCur->dateAbsent.peek() << ". Do you want to modify thise date ?" << endl;
+						cout << "Enter 1 to delete, 2 to keep ::> ";
+						cin >> yesOrNo;
+						if (yesOrNo == 1)
+						{
+							pCur->dateAbsent.pop();
+							pCur->absences--;
+						}
+						if (yesOrNo == 2)
+						{
+							tempDates.push(pCur->dateAbsent.pop());
+							pCur->absences--;
+						};
+					}
+					while (!tempDates.isEmpty())
+					{
+						pCur->dateAbsent.push(tempDates.pop());
+						pCur->absences++;
+					}
+				}
+				pCur = pCur->getNextPtr();
+			}
+		}
+		if (option == 2)
+		{
+			cout << "Enter student name::> ";
+			cin >> tempName;
+			while (pCur != nullptr)
+			{
+				if (pCur->name == tempName)
+				{
+					cout << "Here are the absence date available to edit for " << tempName <<endl;
+					while (absIndex < pCur->absences)
+					{
+						cout << "Date: " << pCur->dateAbsent.peek() << ". Do you want to modify thise date ?" << endl;
+						cout << "Enter 1 to delete, 2 to keep ::> ";
+						cin >> yesOrNo;
+						if (yesOrNo == 1)
+						{
+							pCur->dateAbsent.pop();
+							pCur->absences--;
+						}
+						if (yesOrNo == 2)
+						{
+							tempDates.push(pCur->dateAbsent.pop());
+							pCur->absences--;
+						};
+					}
+					while (!tempDates.isEmpty())
+					{
+						pCur->dateAbsent.push(tempDates.pop());
+						pCur->absences++;
+					}
+				}
+				pCur = pCur->getNextPtr();
+			}
+
+		}
+	}
 }
 
 Node * LinkedList::makeNode(Node newData)

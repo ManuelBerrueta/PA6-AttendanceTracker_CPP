@@ -81,7 +81,7 @@ int Menu::myMenu()
 			break;
 
 		case 2:
-			//
+			//Load Master List
 			MasterList.loadMasterList();
 			system("cls");
 			option = 0;
@@ -103,7 +103,7 @@ int Menu::myMenu()
 
 		case 5:
 			//Edit Absences Function
-			
+			MasterList.editAbsence();
 			system("cls");
 			option = 0;
 			break;
@@ -117,10 +117,12 @@ int Menu::myMenu()
 			if (reportOpt == 1)
 			{
 				//print report1
+				MasterList.genAbsenceReport();
 			}
 			if (reportOpt == 2)
 			{
 				//print report2
+				MasterList.genThresholdReport();
 			}
 			system("cls");
 			option = 0;
