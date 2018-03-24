@@ -25,7 +25,8 @@ Node::Node(Node & newNode)
 	program = newNode.program;			//(major)
 	level = newNode.level;			// (freshman, sophomore, junior, senior, graduate)
 	absences = newNode.absences;			//Numbers of absences
-	Stack dateAbsent;					//Stack using an array of strings
+	dateAbsent = newNode.dateAbsent; //Changed 3/23
+											//Stack dateAbsent;					//Stack using an array of strings
 
 	mpNext = nullptr;
 }

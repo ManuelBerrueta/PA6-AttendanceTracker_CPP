@@ -78,12 +78,20 @@ void LinkedList::loadMasterList()
 	fileHandle.open("master.txt", ios::in);
 	Node tempData;
 	string tempStr = "";
-	int dateTemp;
 	getline(fileHandle, tempStr);
+	int stackIndex = 0;
 
 	while (getline(fileHandle, tempStr))
 	{
+		stackIndex = 0;
 		getline(fileHandle, tempStr, ',');
+
+		if (tempStr == "")
+		{
+			break;
+		}
+
+
 		tempData.recordNum = stoi(tempStr);
 		getline(fileHandle, tempStr, ',');
 		tempData.id_Num = stoi(tempStr);
@@ -94,19 +102,21 @@ void LinkedList::loadMasterList()
 		getline(fileHandle, tempData.units, ',');
 		getline(fileHandle, tempData.program, ',');
 		getline(fileHandle, tempData.level, ',');
-		getline(fileHandle, tempStr);
+		getline(fileHandle, tempStr, ',');
 		tempData.absences = stoi(tempStr);
-		
-		while (getline(fileHandle, tempStr, ','))//Problem is in here before or in loop
+		//while < tempData.absences
+		while (stackIndex < tempData.absences)
 		{
 			getline(fileHandle, tempStr, ',');
 			tempData.dateAbsent.push(tempStr);
+			stackIndex++;
 		}
 
 		//At the end of this loop
 		this->insertAtFront(tempData);
+		tempStr = tempData.dateAbsent.pop();
 	}
-	fileHandle.close();
+	 fileHandle.close();
 }
 
 void LinkedList::markAbsence()
@@ -149,7 +159,7 @@ void LinkedList::storeList()
 
 	Node *pCur = mpHead;
 
-	fileHandle << ",ID,Name,Email,Units,Program,Level,absences,absence_dates" << endl;
+	//fileHandle << "master list" << endl;
 
 	while (pCur != nullptr)
 	{

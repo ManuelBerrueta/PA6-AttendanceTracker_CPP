@@ -11,7 +11,6 @@ void Stack::push(string date)
 {
 	//This function will push the date to the stack
 	//string temp; // = << (now->tm_year + 1900) << '-' << (now->tm_mon + 1) << '-' << now->tm_mday << endl   //Did not work
-	
 	absenceTracker[++StackTop] = date;
 
 	//absenceTracker[mpStackHead] << (now->tm_year + 1900) << '-'	<< (now->tm_mon + 1) << '-' << now->tm_mday << endl;
@@ -32,7 +31,7 @@ string Stack::peek()
 bool Stack::isEmpty()
 {
 	bool isitEmpty = true;
-	if (StackTop != -1)
+	if (StackTop != -1) //added || absenceTracker[StackTop] != ""
 	{
 		isitEmpty = false;
 	}
@@ -44,10 +43,17 @@ fstream & operator<<(fstream & lhs, Stack &rhs)
 	Stack tempData;
 	string tempDate;
 	
-	while (!rhs.isEmpty())
+	//if (!rhs.isEmpty())
+	//{
+
+	//}
+
+
+
+	while (!rhs.isEmpty()) //
 	{
 		tempDate = rhs.pop();
-		lhs << tempDate /*<< ','*/;
+		lhs << tempDate << ',';
 		tempData.push(tempDate);
 	}
 	while (!tempData.isEmpty()) ///Start here
